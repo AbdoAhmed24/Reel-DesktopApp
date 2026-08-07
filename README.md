@@ -1,149 +1,113 @@
-# Reel — run the `.exe` on Windows
+# 🎬 Reel — Local Movie & TV Show Library Manager
 
-Short guide if you just want **Reel.exe** on your PC and in **Start / search**.
-
----
-
-## If you already have the built app
-
-After packaging, the app lives here:
-
-```
-Show-Movie-Library-Manager\electron-release\Reel-win32-x64\
-```
-
-Important files in that folder:
-
-| File / folder | What it is |
-|---------------|------------|
-| `Reel.exe` | The app — double-click this |
-| `resources\` | App data (do not delete) |
-| `locales\`, `*.dll`, etc. | Electron runtime (do not delete) |
-
-**Keep the whole `Reel-win32-x64` folder together.** Moving only `Reel.exe` somewhere else will break the app.
-
-### Run it
-
-1. Open File Explorer.
-2. Go to `electron-release\Reel-win32-x64`.
-3. Double-click **`Reel.exe`**.
-
-Or from PowerShell (from the project folder):
-
-```powershell
-& ".\electron-release\Reel-win32-x64\Reel.exe"
-```
+**Reel** is a modern, cinematic local media player and library manager for Windows. It indexes your local movie and TV show folders, auto-enriches metadata from TMDB, auto-detects subtitles, and streams your media smoothly via built-in player or external players like VLC.
 
 ---
 
-## If you need to build the `.exe` first
+## 📌 Quick Setup Guide (Local App)
 
-From the project folder in PowerShell:
+### 1. Keep this folder together
+Do **not** move `Reel.exe` out of this folder by itself. It requires the accompanying files (`resources/`, `locales/`, `.dll` files) in this directory to run properly.
 
-```powershell
-cd "C:\Career\Projects\Library Manager\Show-Movie-Library-Manager"
-bun install
-bun run electron:pack:win
-```
+### 2. Move to a permanent location (Recommended)
+Before pinning or launching, move this entire `Reel-win32-x64` folder to a permanent location, such as:
+- `C:\Program Files\Reel\`  or  
+- `C:\Users\<YourUsername>\AppData\Local\Reel\`
 
-When it finishes, use `electron-release\Reel-win32-x64\Reel.exe` as above.
+### 3. Launch Reel
+Double-click **`Reel.exe`**.
 
-*(If you use npm instead of Bun: `npm install` then `npm run electron:pack:win`.)*
-
----
-
-## Move it somewhere permanent (recommended)
-
-Before pinning or searching, copy the **entire folder** to a fixed location, for example:
-
-```
-C:\Program Files\Reel\
-```
-
-or
-
-```
-C:\Users\<YourName>\AppData\Local\Reel\
-```
-
-After copying, always launch:
-
-```
-C:\Program Files\Reel\Reel.exe
-```
-
-(not a lone shortcut to an exe that was copied without its folder).
+> 💡 **Windows SmartScreen Note**: On first launch, Windows may show a *"Windows protected your PC"* message for unsigned local apps. Click **More info** → **Run anyway**.
 
 ---
 
-## Add Reel to Windows search / Start
+## 🔍 Add Reel to Windows Search & Start Menu
 
-### Option A — Pin to Start (easiest)
+To open Reel instantly like a native Windows application:
 
-1. Go to the folder that contains `Reel.exe`.
-2. Right-click **`Reel.exe`**.
-3. Click **Pin to Start**.
-
-Reel shows up in the Start menu and in search when you type **Reel**.
-
-### Option B — Pin to taskbar
-
+### Option A — Pin to Start or Taskbar (Easiest)
 1. Right-click **`Reel.exe`**.
-2. Click **Pin to taskbar** (or **More → Pin to taskbar**).
+2. Select **Pin to Start** or **Pin to Taskbar**.
 
-### Option C — Start menu “Programs” list (best for search)
-
-This makes Reel appear like a normal installed app in search.
-
-1. Press **Win + R**, type:
-
-   ```
-   shell:programs
-   ```
-
-   Press Enter. (Opens your personal Start Menu Programs folder.)
-
-2. Right-click inside the folder → **New → Shortcut**.
-
-3. For location, browse to **`Reel.exe`** (e.g. `C:\Program Files\Reel\Reel.exe`) and finish the wizard. Name it **Reel**.
-
-4. Optional: right-click the new shortcut → **Properties** → **Change Icon** if you want a custom icon.
-
-Search Windows for **Reel** — it should appear under Apps.
-
-### Option D — Desktop shortcut
-
-1. Right-click **`Reel.exe`** → **Show more options** → **Send to** → **Desktop (create shortcut)**.
+### Option B — Windows Search Integration
+1. Press `Win + R`, type `shell:programs`, and press **Enter**.
+2. Right-click inside the folder → **New** → **Shortcut**.
+3. Browse to `Reel.exe` in your permanent folder and click **Finish**.
+4. Name the shortcut **Reel**.
+5. You can now press `Win` key, type **Reel**, and press **Enter** to open the app anytime!
 
 ---
 
-## First launch checklist
+## ⚙️ Initial Setup Checklist
 
-1. Open **Settings** in the app.
-2. Choose your **Movies folder** and **Shows folder** (separate paths).
-3. Optional: add **TMDB API key** for posters/metadata.
-4. Optional: set **VLC path** (e.g. `C:\Program Files\VideoLAN\VLC\vlc.exe`) and enable external player.
+When you launch Reel for the first time:
 
-Then use **Rescan folders** if you change library paths later.
-
----
-
-## Troubleshooting
-
-| Problem | Fix |
-|---------|-----|
-| “SSR error” or blank window | Rebuild with `bun run electron:pack:win` so `resources\.output` is included. |
-| Windows SmartScreen warning | Expected for unsigned local builds — click **More info → Run anyway**, or sign the exe later. |
-| App won’t start after move | You moved only `Reel.exe`. Move back the full `Reel-win32-x64` folder (or your copy of it). |
-| Can’t find in search | Use **Option C** above, or pin to Start again from the final `Reel.exe` location. |
+1. **Set Library Folders**:
+   - Open **Settings** (gear icon in top-right).
+   - Click **Choose folder** for **Movies** and select your local movies folder.
+   - Click **Choose folder** for **TV Shows** and select your local TV shows folder.
+2. **TMDB Metadata & Posters (Optional)**:
+   - Enable TMDB metadata in Settings.
+   - Enter a free API key from [themoviedb.org](https://www.themoviedb.org/settings/api).
+   - *Note: TMDB enrichment is smart & incremental — adding a new episode or movie only fetches metadata for that new item, leaving existing metadata untouched.*
+3. **External Player Integration (Optional)**:
+   - To launch videos in external players like VLC or mpv, enter your player executable path (e.g. `C:\Program Files\VideoLAN\VLC\vlc.exe`).
+   - Enable *Use external player by default* if desired.
 
 ---
 
-## Quick reference
+## 💬 Subtitle Detection & Management
 
-| Goal | Action |
-|------|--------|
-| Run once | Double-click `Reel.exe` inside `Reel-win32-x64` |
-| Build exe | `bun run electron:pack:win` |
-| Search / Start | Pin to Start, or create shortcut in `shell:programs` |
-| Taskbar | Right-click exe → Pin to taskbar |
+Reel includes powerful automatic and manual subtitle detection capabilities:
+
+### 1. Automatic Local Subtitle Detection
+- Reel automatically scans for subtitle files sitting next to your video files or in the same directory.
+- **Supported extensions**: `.srt`, `.vtt`, `.ass`, `.ssa`, `.sub`, `.idx`, `.smi`.
+- Matching subtitles are automatically detected, parsed, and made available in the player subtitle menu.
+
+### 2. Custom Subtitle Search Folder
+- You can set a global **Subtitle search folder** in **Settings**.
+- Reel will scan this folder to auto-match external subtitle files to your videos.
+
+### 3. Automatic Subtitle Format Conversion
+- Non-standard subtitle formats (like `.srt` and `.ass`/`.ssa`) are automatically converted on-the-fly to WebVTT (`.vtt`) for seamless HTML5 video rendering with formatting tags cleaned.
+
+### 4. Manual In-Player Subtitle Upload
+- While watching any video, click the **Upload subtitles** button at the top right of the player (or drag-and-drop a file).
+- Select any `.srt`, `.vtt`, `.ass`, or `.ssa` file to load it instantly.
+
+### 5. External Player Subtitle Support
+- When opening a video in an external player like VLC, mpv, or IINA, Reel automatically passes the matching subtitle file to the external player.
+
+---
+
+## 🔥 Key Features
+
+- **Cinematic UI**: Vibrant dark design, backdrop art, hero banners, and smooth animations.
+- **Smart TV Series Grouping**: Automatically groups episodes into series and seasons regardless of naming format.
+- **On-the-Fly Transcoding**: Uses bundled `ffmpeg` to transparently remux/transcode unsupported containers or codecs (MKV, HEVC/H.265, AC3, DTS, etc.) into web-compatible H.264/AAC.
+- **Bi-Directional External Player Sync**: Synchronizes watch progress automatically between Reel and VLC/mpv. If you watch half an episode in VLC, Reel updates your progress bar and resume point on window focus.
+- **Next Episode & Credits Detection**: Auto-detects ending credits with a Netflix-style "Up Next" card for smooth binge-watching.
+- **Keyboard Shortcuts**:
+  - `Space` / `K`: Play / Pause
+  - `Left Arrow` / `Right Arrow`: Seek ±10 seconds (Clamped safely so arrow seeking never forces accidental episode skips)
+  - `Shift + Left/Right Arrow`: Seek ±30 seconds
+  - `J` / `L`: Seek ±10 seconds
+  - `M`: Mute / Unmute
+  - `F`: Toggle Fullscreen
+  - `Up Arrow` / `Down Arrow`: Volume control ±5%
+
+---
+
+## ❓ Troubleshooting
+
+| Issue | Solution |
+|-------|----------|
+| **App won't start after moving `Reel.exe`** | You moved `Reel.exe` alone. Move the **entire** `Reel-win32-x64` folder. |
+| **SmartScreen warning on Windows** | Click **More info → Run anyway**. |
+| **Subtitles not showing up** | Ensure subtitle file matches video name or directory, or click **Upload subtitles** inside the player. |
+| **Video doesn't play natively in browser** | Ensure Electron packaged app is running — bundled `ffmpeg` will automatically transcode MKV/HEVC/AC3 files. |
+
+---
+
+*Enjoy your local cinema with Reel!*
