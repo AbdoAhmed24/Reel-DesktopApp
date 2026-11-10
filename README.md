@@ -1,6 +1,6 @@
 # Reel — Local Movie & TV Show Library Manager
 
-**Reel** is a cinematic desktop app for Windows that turns your local movie and TV show folders into a beautiful, browsable library. It auto-enriches metadata and posters from TMDB, detects subtitles automatically, tracks your watch progress, and plays your media in a built-in player or in an external player like VLC.
+**Reel** is a cinematic desktop app for Windows that turns your local movie and TV show folders into a beautiful, browsable library. It auto-enriches metadata and posters from TMDB, detects subtitles automatically, tracks your watch progress, and plays your media in a built-in player — complete with dual-audio switching and a per-show subtitle sync nudge — or hands off to an external player like VLC.
 
 ---
 
@@ -114,6 +114,7 @@ This lets you search and download subtitles from directly inside the Reel player
 4. Copy the API key shown on the consumers page.
 5. In Reel, open **Settings → OpenSubtitles**.
 6. Paste your key into the **API key** field.
+7. Enter your opensubtitles.com **username** and **password** — these are required to download subtitles (searching works with the key alone).
 
 Once saved, a subtitle search button appears inside the player.
 
@@ -144,7 +145,7 @@ At this point Reel is fully configured. Here's a quick summary of what you've un
 |---|---|
 | Browse and play your local library | Library folders (Step 3) |
 | Posters, backdrops, plot, cast, ratings | TMDB API key (Step 4) |
-| In-player subtitle search & download | OpenSubtitles API key (Step 5) |
+| In-player subtitle search & download | OpenSubtitles API key + login (Step 5) |
 | Launch in VLC / mpv | External player path (Step 6) |
 
 ---
@@ -156,6 +157,7 @@ At this point Reel is fully configured. Here's a quick summary of what you've un
 - **Movies and TV shows** indexed separately with their own browse pages.
 - **Smart TV series grouping** — episodes are automatically grouped by show and season regardless of naming format.
 - **TMDB enrichment** — posters, backdrops, hero banners, plot summaries, cast lists, ratings, genres, and runtime, fetched on demand with a free API key.
+- **Immersive background mode** — optional full-bleed wallpaper that lets a title's backdrop fill the screen behind a minimal, floating UI. Toggle it in **Settings → Appearance**.
 - **Collections** — group movies into franchises and box sets (e.g. Harry Potter, Marvel, Transformers).
 - **Watch stats** — hours watched, movies and episodes finished, a 7-day activity bar chart, most-watched titles, and top genres.
 - **Watched badges** — optional checkmark on poster cards for titles and episodes you've finished.
@@ -164,9 +166,11 @@ At this point Reel is fully configured. Here's a quick summary of what you've un
 
 - **Built-in video player** with a cinematic, full-screen UI.
 - **Resume playback** — progress is saved per title and episode so you pick up exactly where you left off.
-- **Next Episode card** — a "Up Next" overlay appears near the end of an episode. Credits detection is experimental — it's recommended to leave auto-play off in Settings and use the card as a manual prompt instead.
-- **Picture-in-picture** support.
+- **Dual-audio switching** — when a file carries multiple audio streams (e.g. original + dub, or commentary), an audio-track selector appears in the player so you can switch on the fly. The track menu only shows when there's more than one track.
+- **Subtitle sync nudge** — shift subtitles earlier or later in 0.5-second steps from the player when a track runs ahead or behind. The nudge is remembered **per movie, and per show + season**, so every episode in a season shares one offset while a different season or title starts fresh.
 - **Episode selector panel** — browse and jump to any episode without leaving the player.
+- **Picture-in-picture** support.
+- **Next Episode card** — an "Up Next" overlay appears near the end of an episode so you can jump to the next one. See the note below on credits detection.
 
 ### Subtitle Support
 
@@ -174,12 +178,12 @@ At this point Reel is fully configured. Here's a quick summary of what you've un
 - **Smart matching** — subtitles are scored by filename similarity, season/episode number, and folder proximity. The best match loads automatically.
 - **Custom subtitle folder** — point Reel at a global subtitles folder in Settings and it will scan there too.
 - **Manual upload** — while watching, click **Upload subtitles** (or drag-and-drop a file) to load any subtitle instantly.
-- **OpenSubtitles search** — search and download from the player with a free API key (Step 5).
+- **OpenSubtitles search** — search and download from the player with a free API key and login (Step 5).
 - **On-the-fly format conversion** — `.srt`, `.ass`, and `.ssa` files are automatically converted to WebVTT for seamless in-browser rendering.
 
 ### Credits Detection & Auto-Play Next Episode
 
-Reel includes automatic credits detection and an "Up Next" card that appears near the end of an episode. The detection is experimental and can misfire on some content, so **it's recommended to turn off "Automatically play the next episode when credits start" in Settings → Playback**. With that off, the Up Next card still appears as a manual prompt — you just decide when to continue rather than having the app skip automatically.
+Reel can detect when the credits start and surface an "Up Next" card near the end of an episode. **This detection is experimental and can misfire on some content, so auto-play is best left off.** Keep **"Automatically play the next episode when credits start"** turned off in **Settings → Playback** and the Up Next card still appears as a manual prompt — you decide when to continue rather than having the app skip automatically.
 
 ### External Player Integration
 
@@ -203,6 +207,7 @@ Reel includes automatic credits detection and an "Up Next" card that appears nea
 | `↑` / `↓` | Volume ±5% |
 | `M` | Mute / Unmute |
 | `F` | Toggle fullscreen |
+| `Esc` | Close the open menu / episode panel |
 
 Arrow key seeking is clamped so it never accidentally skips to a different episode.
 
@@ -218,7 +223,9 @@ Arrow key seeking is clamped so it never accidentally skips to a different episo
 | Media not appearing | Check that the correct folders are set in Settings, then click **Rescan folders**. |
 | No posters or metadata | Make sure TMDB is enabled and your API key is entered correctly in Settings. |
 | Subtitles not loading automatically | Ensure the subtitle file is in the same folder as the video and named similarly. Or use **Upload subtitles** inside the player. |
-| OpenSubtitles search not showing | Add your OpenSubtitles API key in **Settings → OpenSubtitles**. |
+| Subtitles run ahead or behind | Use the subtitle sync nudge in the player to shift timing; it's remembered for that movie, or for that show's season. |
+| OpenSubtitles download fails | Searching needs the API key; **downloading** also needs your opensubtitles.com username and password in **Settings → OpenSubtitles**. |
+| Audio-track switcher missing | The track menu only appears when the file actually has more than one audio stream. |
 | External player doesn't open | Verify the executable path in Settings points to the actual `.exe` file. |
 | Reel doesn't appear in Windows search | Pin it to Start again, or create a Start Menu shortcut using `shell:programs` (Option C above). |
 
