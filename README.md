@@ -137,6 +137,27 @@ Reel passes the matching subtitle file to the external player automatically, and
 
 ---
 
+## Open Any File with Reel
+
+You don't have to add a file to your library to watch it. Right-click **any** video file in File Explorer and open it with Reel:
+
+1. Right-click the video → **Open with**.
+2. Choose **Reel**. If it isn't listed, pick **Choose another app** and browse to your `Reel.exe`.
+3. Reel opens straight into the player for that file.
+
+A file opened this way plays as a one-off — it is **not** added to your library and its progress isn't tracked. To keep a title in your library, put it in your movies or shows folder and rescan. If Reel is already open, "Open with" focuses the existing window instead of launching a second copy.
+
+---
+
+## Staying Up to Date
+
+Reel checks the [Releases](../../releases) page on launch and shows a banner at the top when a newer version exists. It only **notifies** you — it never downloads or installs anything automatically.
+
+- Click **View release** on the banner to open the download page, then grab the new build and replace your existing `Reel` folder with it.
+- You can turn the launch check off, or check on demand, under **Settings → Updates**.
+
+---
+
 ## You're All Set
 
 At this point Reel is fully configured. Here's a quick summary of what you've unlocked:
@@ -147,6 +168,39 @@ At this point Reel is fully configured. Here's a quick summary of what you've un
 | Posters, backdrops, plot, cast, ratings | TMDB API key (Step 4) |
 | In-player subtitle search & download | OpenSubtitles API key + login (Step 5) |
 | Launch in VLC / mpv | External player path (Step 6) |
+| Play any file via right-click | Nothing — works out of the box |
+| Update notifications | Nothing — checks on launch |
+
+---
+
+## Make It Yours
+
+Reel is built to adapt to how you like to browse and watch. Everything below lives in **Settings** and is remembered between sessions.
+
+### Appearance & layout
+
+- **Immersive background** — swap the standard sidebar for a full-bleed wallpaper that fills the screen with the featured title's backdrop behind a minimal floating UI.
+- **Home card shape** — choose **portrait** poster cards (classic 2:3 cover art) or **landscape** cards (16:9 backdrops) for the home rows.
+- **Library view** — browse your library as large **poster** cards, a denser **compact** grid, or a detailed **list**.
+- **Sorting** — order any library view by release date, title, rating, or recently watched, ascending or descending.
+- **Watched badges** — turn the checkmark on finished titles and episodes on or off.
+
+### Playback behavior
+
+- **Episode browser style** — show the in-player episode picker as a swipeable **carousel** or a scrollable **list**.
+- **Auto-play next episode** — opt in to automatic next-episode playback, or keep the manual "Up Next" prompt (recommended; see the credits-detection note below).
+- **External player** — set any native player (VLC, mpv, …) and optionally make it the default for every Play button.
+
+### Metadata & content
+
+- **Pick what gets fetched** — toggle each TMDB field independently: poster, backdrop, overview, rating, genres, runtime, and cast.
+- **Auto-scan on launch** — have Reel re-index your folders every time it opens, or scan only on demand.
+- **Subtitles** — point Reel at a global subtitle folder, and sync any track's timing per movie or per show-and-season.
+
+### Housekeeping
+
+- **Update checks** — keep the launch-time update banner on, or turn it off and check manually whenever you like.
+- **Rescan / re-fetch** — rescan folders for new files and re-fetch metadata for everything on demand.
 
 ---
 
@@ -190,6 +244,17 @@ Reel can detect when the credits start and surface an "Up Next" card near the en
 - Launch any video in VLC, mpv, or a custom player with one click.
 - The matching subtitle file is passed to the external player automatically.
 - **Bi-directional progress sync** — watch progress made in VLC or mpv is reflected in Reel the moment you switch back to the app.
+
+### Open with Reel
+
+- **Play any file without adding it to your library** — right-click a video in File Explorer, Open with → Reel, and it plays immediately.
+- One-off playback: the file is not indexed and its progress isn't tracked, so your library and stats stay clean.
+- **Single instance** — opening a file while Reel is already running focuses the existing window instead of launching a second copy.
+
+### Updates
+
+- **Launch-time update check** — Reel checks the Releases page when it starts and shows a dismissible banner when a newer version is available. It only notifies; downloading and installing stay in your hands.
+- Toggle the check or run it manually from **Settings → Updates**.
 
 ### Media Management
 
